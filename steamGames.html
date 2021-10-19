@@ -1,0 +1,62 @@
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+
+<style>
+  h1 {text-align: center;}
+  p1 {text-align: center;}
+  body {
+    background-position: center center;
+  background-size: 100% 100%;
+
+    font-weight: 500;
+
+     background-image: url("https://cdn.discordapp.com/attachments/625773640968962104/897314124260864041/K7CjwcuzWdQAAAABJRU5ErkJggg.png");
+ center:{text-align: center;}
+  }
+
+</style>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'projects' %}">Projects</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <h1>Same Games</h1>
+  <div class="d-flex justify-content-center">
+    {% if verify1 == "Bad Input" or verify2 == "Bad Input" %}
+        {% if verify1 == "Bad Input" and verify2 == "Bad Input" %}
+          Both Inputs Are Bad!
+        {% elif verify1 == "Bad Input" %}
+            First Steam ID is incorrect!
+        {% elif verify2 == "Bad Input" %}
+            Second Steam ID is incorrect!
+        {% endif %}
+    {% else %}
+        {% if result1 == "Nothing here" and result2 == "Nothing here" %}
+          Both Users have their games lists on private! :(
+        {% elif result1 == "Nothing here" %}
+            First user has their games lists on private! :(
+        {% elif result2 == "Nothing here" %}
+            Second user has their games lists on private! :(
+        {% else %}
+          <p1>{% for i in common_games %}
+            {{i}}
+            <br/>
+          {%endfor%}</p1>
+        {% endif %}
+    {% endif %}
+  </div>
+</body>
